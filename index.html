@@ -1,606 +1,2267 @@
-my<!DOCTYPE html>
+```html
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RobotProf | Climate Tech Academy</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<title>RobotProf | AI for Healthcare</title>
+
+<meta name="description" content="RobotProf helps doctors and healthcare professionals understand, use and build with artificial intelligence.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
-/* ================= COLORS ================= */
+/* =========================================================
+   ROBOTPROF — AI × HEALTHCARE
+   ========================================================= */
+
 :root{
---tech-blue:#0a2a66;
---nature-green:#1db954;
---white:#ffffff;
---soft:#f4f7fb;
+    --ink:#071b17;
+    --ink-soft:#0d2b26;
+
+    --lime:#b8f55e;
+    --lime-light:#dfff9e;
+
+    --cream:#f6f5ef;
+    --white:#ffffff;
+
+    --sage:#dfe8d4;
+    --muted:#697570;
+
+    --line:rgba(7,27,23,.13);
+
+    --max:1400px;
 }
 
-/* ================= GLOBAL ================= */
+/* =========================================================
+   RESET
+   ========================================================= */
+
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Inter',sans-serif;
-scroll-behavior:smooth;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-background:var(--white);
-color:#111;
-line-height:1.7;
+    font-family:'DM Sans',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+    overflow-x:hidden;
 }
 
-section{
-padding:100px 8%;
+a{
+    color:inherit;
+    text-decoration:none;
 }
 
-h1,h2,h3{
-color:var(--tech-blue);
+button{
+    font-family:inherit;
 }
 
-.section-title{
-text-align:center;
-margin-bottom:60px;
+/* =========================================================
+   ANNOUNCEMENT
+   ========================================================= */
+
+.announcement{
+    background:var(--lime);
+    color:var(--ink);
+    text-align:center;
+
+    padding:9px 20px;
+
+    font-size:11px;
+    font-weight:700;
+
+    letter-spacing:.04em;
 }
 
-/* ================= HEADER ================= */
-header{
-position:fixed;
-width:100%;
-top:0;
-background:white;
-padding:20px 8%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-box-shadow:0 4px 20px rgba(0,0,0,0.05);
-z-index:1000;
+.announcement span{
+    opacity:.55;
+    margin-right:5px;
+}
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.navbar{
+    height:78px;
+
+    padding:0 6vw;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    background:rgba(246,245,239,.93);
+    backdrop-filter:blur(16px);
+
+    border-bottom:1px solid var(--line);
 }
 
 .logo{
-font-weight:800;
-font-size:24px;
-color:var(--tech-blue);
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:21px;
 }
 
-nav a{
-margin-left:30px;
-text-decoration:none;
-font-weight:600;
-color:#222;
-transition:0.3s;
-position:relative;
+.logo-mark{
+    width:36px;
+    height:36px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:10px;
+
+    background:var(--ink);
+    color:var(--lime);
+
+    font-family:'Space Grotesk',sans-serif;
 }
 
-nav a::after{
-content:'';
-position:absolute;
-width:0%;
-height:2px;
-left:0;
-bottom:-5px;
-background:var(--nature-green);
-transition:0.3s;
+.logo-name span{
+    color:#73952e;
 }
 
-nav a:hover{
-color:var(--nature-green);
+.nav-links{
+    display:flex;
+    gap:35px;
+
+    font-size:13px;
+    font-weight:600;
 }
 
-nav a:hover::after{
-width:100%;
+.nav-links a{
+    opacity:.65;
+    transition:.2s;
 }
 
-/* ================= HERO ================= */
+.nav-links a:hover{
+    opacity:1;
+}
+
+.nav-button{
+    background:var(--ink);
+    color:white;
+
+    padding:11px 18px;
+
+    border-radius:50px;
+
+    font-size:12px;
+    font-weight:700;
+
+    transition:.25s;
+}
+
+.nav-button:hover{
+    transform:translateY(-2px);
+}
+
+.nav-button span{
+    color:var(--lime);
+    margin-left:7px;
+}
+
+.menu-button{
+    display:none;
+
+    background:none;
+    border:none;
+
+    font-size:25px;
+    cursor:pointer;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
 .hero{
-height:75vh;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-background:linear-gradient(135deg,var(--tech-blue),var(--nature-green));
-color:white;
-padding:0 10%;
+    min-height:720px;
+
+    max-width:var(--max);
+    margin:auto;
+
+    padding:90px 6vw;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+
+    align-items:center;
+
+    gap:60px;
+}
+
+.eyebrow{
+    display:flex;
+    align-items:center;
+    gap:9px;
+
+    margin-bottom:25px;
+
+    color:#769444;
+
+    font-size:10px;
+    font-weight:800;
+
+    letter-spacing:.16em;
+}
+
+.eyebrow-dot{
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:#8ab640;
+
+    box-shadow:0 0 0 6px rgba(138,182,64,.12);
 }
 
 .hero h1{
-font-size:20px;
-margin-bottom:20px;
-color:white;
+    max-width:800px;
+
+    font-family:'Space Grotesk',sans-serif;
+
+    font-size:clamp(50px,6.5vw,91px);
+
+    line-height:.97;
+
+    letter-spacing:-.06em;
 }
 
-.hero p{
-font-size:22px;
-margin-bottom:30px;
+.hero h1 em{
+    color:#7fa342;
+    font-style:normal;
 }
 
-.hero-buttons{
-display:flex;
-justify-content:center;
-gap:20px;
-flex-wrap:wrap;
+.hero-description{
+    max-width:610px;
+
+    margin:30px 0;
+
+    color:var(--muted);
+
+    font-size:17px;
+
+    line-height:1.75;
 }
 
-/* ================= BUTTONS ================= */
-.btn{
-display:inline-block;
-padding:16px 40px;
-border-radius:50px;
-text-decoration:none;
-font-weight:600;
-transition:0.3s;
-cursor:pointer;
+.hero-actions{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    flex-wrap:wrap;
 }
 
-.btn-primary{
-background:white;
-color:var(--tech-blue);
+.primary-button{
+    display:inline-flex;
+    align-items:center;
+    gap:18px;
+
+    padding:15px 21px;
+
+    background:var(--ink);
+    color:white;
+
+    border-radius:50px;
+
+    font-size:13px;
+    font-weight:700;
+
+    transition:.25s;
 }
 
-.btn-primary:hover{
-background:black;
-color:white;
-transform:translateY(-3px);
-box-shadow:0 15px 30px rgba(0,0,0,0.2);
+.primary-button:hover{
+    transform:translateY(-3px);
+
+    box-shadow:0 15px 35px rgba(7,27,23,.18);
 }
 
-.btn-green{
-background:var(--nature-green);
-color:white;
+.primary-button span{
+    color:var(--lime);
+    font-size:18px;
 }
 
-.btn-green:hover{
-background:var(--tech-blue);
-transform:translateY(-3px);
-box-shadow:0 15px 30px rgba(0,0,0,0.2);
+.secondary-button{
+    padding:14px 20px;
+
+    border:1px solid var(--line);
+
+    border-radius:50px;
+
+    font-size:13px;
+    font-weight:700;
+
+    transition:.2s;
 }
 
-/* ================= ABOUT ================= */
-.about{
-background:var(--soft);
-text-align:center;
+.secondary-button:hover{
+    background:white;
 }
 
-.about p{
-max-width:800px;
-margin:auto;
-margin-bottom:60px;
+.hero-stats{
+    display:flex;
+    gap:35px;
+
+    margin-top:48px;
 }
 
-/* Animated Stats */
+.hero-stat{
+    display:flex;
+    flex-direction:column;
+}
+
+.hero-stat strong{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:18px;
+}
+
+.hero-stat small{
+    margin-top:2px;
+
+    color:var(--muted);
+
+    font-size:9px;
+
+    text-transform:uppercase;
+    letter-spacing:.09em;
+}
+
+/* =========================================================
+   HERO VISUAL
+   ========================================================= */
+
+.hero-visual{
+    height:550px;
+
+    position:relative;
+
+    display:grid;
+    place-items:center;
+}
+
+.visual-grid{
+    position:absolute;
+    inset:0;
+
+    background-image:
+        linear-gradient(rgba(7,27,23,.07) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(7,27,23,.07) 1px,transparent 1px);
+
+    background-size:36px 36px;
+
+    mask-image:radial-gradient(circle,black 15%,transparent 70%);
+}
+
+.glow{
+    position:absolute;
+
+    width:380px;
+    height:380px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #eaffc3,
+            #9bd84d 40%,
+            transparent 68%
+        );
+
+    opacity:.72;
+}
+
+.ring{
+    position:absolute;
+
+    width:500px;
+    height:500px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(118,153,46,.2);
+}
+
+.ai-panel{
+    position:relative;
+    z-index:3;
+
+    width:min(430px,85%);
+
+    padding:27px;
+
+    color:white;
+
+    background:rgba(7,27,23,.96);
+
+    border:1px solid rgba(184,245,94,.32);
+
+    border-radius:24px;
+
+    box-shadow:
+        0 35px 90px rgba(7,27,23,.25);
+
+    animation:float 6s ease-in-out infinite;
+}
+
+.panel-top{
+    display:flex;
+    justify-content:space-between;
+
+    color:#87958f;
+
+    font-size:8px;
+
+    letter-spacing:.14em;
+}
+
+.panel-status{
+    color:var(--lime);
+}
+
+.panel-line{
+    height:1px;
+
+    margin:23px 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--lime),
+            transparent
+        );
+
+    opacity:.55;
+}
+
+.ai-symbol{
+    width:60px;
+    height:60px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:17px;
+
+    border:1px solid rgba(184,245,94,.35);
+
+    color:var(--lime);
+
+    font-size:28px;
+
+    margin-bottom:25px;
+}
+
+.ai-panel h3{
+    font-family:'Space Grotesk',sans-serif;
+
+    font-size:29px;
+
+    line-height:1.08;
+
+    letter-spacing:-.04em;
+}
+
+.ai-panel p{
+    color:#9ba8a3;
+
+    font-size:12px;
+
+    margin-top:12px;
+}
+
+.terminal{
+    margin-top:25px;
+
+    padding:15px;
+
+    background:#0c3029;
+
+    border-radius:12px;
+
+    font-family:monospace;
+
+    font-size:9px;
+
+    line-height:2.1;
+
+    color:#b7c3bd;
+}
+
+.terminal span{
+    color:#6d8078;
+}
+
+.terminal b{
+    color:var(--lime);
+
+    font-weight:400;
+}
+
+.float-label{
+    position:absolute;
+
+    z-index:5;
+
+    padding:11px 14px;
+
+    background:white;
+
+    border:1px solid var(--line);
+
+    border-radius:12px;
+
+    box-shadow:0 15px 40px rgba(7,27,23,.1);
+
+    font-size:9px;
+
+    font-weight:800;
+
+    letter-spacing:.1em;
+}
+
+.float-one{
+    right:1%;
+    top:90px;
+
+    color:#76952f;
+}
+
+.float-two{
+    left:0;
+    bottom:100px;
+
+    color:#78847f;
+}
+
+.float-two span{
+    color:#8cb640;
+}
+
+@keyframes float{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-12px);
+    }
+
+}
+
+/* =========================================================
+   MARQUEE
+   ========================================================= */
+
+.marquee{
+    overflow:hidden;
+
+    background:var(--ink);
+
+    color:var(--lime);
+
+    padding:17px 0;
+
+    white-space:nowrap;
+
+    font-family:'Space Grotesk',sans-serif;
+
+    font-size:11px;
+
+    letter-spacing:.17em;
+}
+
+.marquee-track{
+    display:inline-block;
+
+    animation:marquee 25s linear infinite;
+}
+
+.marquee i{
+    font-style:normal;
+
+    margin:0 28px;
+
+    color:#6f9039;
+}
+
+@keyframes marquee{
+
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(-50%);
+    }
+
+}
+
+/* =========================================================
+   GENERAL SECTION
+   ========================================================= */
+
+.section{
+    max-width:var(--max);
+    margin:auto;
+
+    padding:120px 6vw;
+}
+
+.section-label{
+    color:#779445;
+
+    font-size:10px;
+    font-weight:800;
+
+    letter-spacing:.15em;
+}
+
+/* =========================================================
+   INTRO
+   ========================================================= */
+
+.intro{
+    display:grid;
+
+    grid-template-columns:.38fr 1fr;
+
+    gap:50px;
+}
+
+.section-heading{
+    font-family:'Space Grotesk',sans-serif;
+
+    font-size:clamp(40px,5vw,70px);
+
+    line-height:1.02;
+
+    letter-spacing:-.055em;
+}
+
+.section-heading span{
+    color:#87a84d;
+}
+
+.section-copy{
+    max-width:680px;
+
+    margin-top:26px;
+
+    color:var(--muted);
+
+    font-size:17px;
+
+    line-height:1.75;
+}
+
+/* =========================================================
+   SOLUTIONS
+   ========================================================= */
+
+.solutions{
+    max-width:var(--max);
+
+    margin:auto;
+
+    padding:0 6vw 120px;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:15px;
+}
+
+.solution-card{
+    min-height:450px;
+
+    padding:30px;
+
+    border-radius:23px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    transition:.3s;
+}
+
+.solution-card:hover{
+    transform:translateY(-7px);
+}
+
+.solution-dark{
+    background:var(--ink);
+    color:white;
+}
+
+.solution-green{
+    background:var(--lime);
+}
+
+.solution-cream{
+    background:#e7e3d8;
+}
+
+.card-number{
+    font-size:10px;
+
+    opacity:.5;
+
+    letter-spacing:.1em;
+}
+
+.card-icon{
+    margin-top:60px;
+
+    font-size:35px;
+}
+
+.solution-card h3{
+    margin-top:22px;
+
+    font-family:'Space Grotesk',sans-serif;
+
+    font-size:28px;
+
+    letter-spacing:-.04em;
+}
+
+.solution-card p{
+    margin-top:12px;
+
+    max-width:350px;
+
+    font-size:13px;
+
+    opacity:.68;
+}
+
+.card-link{
+    margin-top:auto;
+
+    font-size:11px;
+
+    font-weight:800;
+}
+
+.card-link span{
+    margin-left:10px;
+}
+
+/* =========================================================
+   LEARNING
+   ========================================================= */
+
+.learning-section{
+    background:#eeece4;
+}
+
+.learning{
+    max-width:var(--max);
+    margin:auto;
+
+    padding:120px 6vw;
+
+    display:grid;
+
+    grid-template-columns:.75fr 1.25fr;
+
+    gap:90px;
+}
+
+.learning-list{
+    margin-top:5px;
+}
+
+.learning-item{
+    display:grid;
+
+    grid-template-columns:38px 1fr 20px;
+
+    gap:15px;
+
+    padding:23px 0;
+
+    border-top:1px solid var(--line);
+}
+
+.learning-item:last-child{
+    border-bottom:1px solid var(--line);
+}
+
+.learning-number{
+    color:#8b9792;
+
+    font-size:9px;
+}
+
+.learning-item h3{
+    font-family:'Space Grotesk',sans-serif;
+
+    font-size:18px;
+}
+
+.learning-item p{
+    color:var(--muted);
+
+    font-size:11px;
+
+    margin-top:4px;
+}
+
+.learning-arrow{
+    font-size:17px;
+}
+
+/* =========================================================
+   STATS
+   ========================================================= */
+
 .stats{
-display:flex;
-justify-content:center;
-gap:60px;
-flex-wrap:wrap;
+    background:var(--lime);
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:25px;
+
+    padding:70px 6vw;
 }
 
-.stat h3{
-font-size:40px;
-color:var(--nature-green);
+.stat{
+    padding-left:25px;
+
+    border-left:1px solid rgba(7,27,23,.2);
 }
 
-.stat p{
-font-weight:600;
-color:var(--tech-blue);
+.stat strong{
+    display:block;
+
+    font-family:'Space Grotesk',sans-serif;
+
+    font-size:clamp(34px,4vw,56px);
+
+    line-height:1;
+
+    letter-spacing:-.06em;
 }
 
-/* ================= COURSES ================= */
-  
-.courses h2{
-text-align:center;
-}
-  
-.courses-container{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:30px;
+.stat span{
+    display:block;
+
+    margin-top:8px;
+
+    font-size:9px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.12em;
+
+    opacity:.65;
 }
 
-.course-card{
-background:white;
-width:300px;
-border-radius:20px;
-box-shadow:0 15px 40px rgba(0,0,0,0.08);
-overflow:hidden;
-transition:0.4s;
-text-align:center;
+/* =========================================================
+   MANIFESTO
+   ========================================================= */
+
+.manifesto{
+    display:grid;
+
+    grid-template-columns:.38fr 1fr;
+
+    gap:50px;
 }
 
-.course-card:hover{
-transform:translateY(-12px) scale(1.02);
-box-shadow:0 20px 50px rgba(0,0,0,0.15);
+.manifesto-text{
+    max-width:900px;
+
+    font-family:'Space Grotesk',sans-serif;
+
+    font-size:clamp(35px,5vw,68px);
+
+    line-height:1.03;
+
+    letter-spacing:-.055em;
 }
 
-.course-card img{
-width:100%;
-height:200px;
-object-fit:cover;
+.manifesto-text span{
+    color:#88a94d;
 }
 
-.course-content{
-padding:20px;
-text-align:left;
+.manifesto-subtext{
+    margin-top:40px;
+
+    color:var(--muted);
+
+    font-size:16px;
+
+    line-height:1.8;
 }
 
-.course-content h3{
-margin-bottom:10px;
-color:var(--tech-blue);
-font-size:20px;
-text-align:center;
+.dark-button{
+    display:inline-flex;
+
+    margin-top:30px;
+
+    padding:15px 21px;
+
+    background:var(--ink);
+
+    color:white;
+
+    border-radius:50px;
+
+    font-size:12px;
+
+    font-weight:700;
 }
 
-.course-content ul{
-text-align:left;
-margin:15px 0;
-padding-left:20px;
+.dark-button span{
+    color:var(--lime);
+
+    margin-left:15px;
 }
 
-.course-content ul li{
-margin-bottom:8px;
-font-size:14px;
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.cta{
+    position:relative;
+
+    overflow:hidden;
+
+    background:var(--ink);
+
+    color:white;
+
+    text-align:center;
+
+    padding:120px 6vw;
 }
 
-.price{
-font-weight:700;
-margin:10px 0;
-color:red;
-font-size:18px;
-text-align:center;
+.cta-glow{
+    position:absolute;
+
+    width:650px;
+    height:350px;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(184,245,94,.17),
+            transparent 68%
+        );
 }
 
-.course-content .btn{
-display:block;
-margin:auto;
-  text-align:center;
+.cta-content{
+    position:relative;
+    z-index:2;
 }
 
-/* ================= TESTIMONIAL SLIDER ================= */
-.testimonial-slider{
-max-width:800px;
-margin:auto;
-position:relative;
-margin-bottom:80px;
+.cta .section-label{
+    color:#91b64d;
 }
 
-.slide{
-display:none;
-animation:fadeSlide 1s ease-in-out;
+.cta h2{
+    margin:25px auto 18px;
+
+    max-width:950px;
+
+    font-family:'Space Grotesk',sans-serif;
+
+    font-size:clamp(45px,7vw,90px);
+
+    line-height:.98;
+
+    letter-spacing:-.06em;
 }
 
-.slide.active{
-display:block;
+.cta h2 span{
+    color:var(--lime);
 }
 
-@keyframes fadeSlide{
-from{opacity:0;}
-to{opacity:1;}
+.cta p{
+    color:#94a39d;
+
+    margin-bottom:30px;
 }
 
-.testimonial{
-background:var(--soft);
-padding:40px;
-border-radius:20px;
-box-shadow:0 10px 30px rgba(0,0,0,0.08);
-font-style:italic;
-}
-  
-.solar img{
-width:60%;
-height:200px;
-}
-  
-/* CONTACT */
-.contact {
-    background: light green;
-    padding: 80px 20px;
-    text-align: center;
-    border-radius: 10p;
-  color: white;
+.light-button{
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    padding:15px 22px;
+
+    background:var(--lime);
+
+    color:var(--ink);
+
+    border-radius:50px;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    transition:.25s;
 }
 
-.contact h2 {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
+.light-button:hover{
+    transform:translateY(-3px);
 }
 
-
-/* FOOTER */
-footer {
-    background: #3b0764;
-    text-align: center;
-    padding: 25px;
-    font-size: 0.9rem;
-}
-
-/* ================= FADE IN ================= */
-.fade-in{
-opacity:0;
-transform:translateY(40px);
-transition:1s ease;
-}
-
-.fade-in.show{
-opacity:1;
-transform:translateY(0);
-}
-
-/* ================= WHATSAPP FLOAT ================= */
-.whatsapp-float{
-position:fixed;
-bottom:30px;
-right:30px;
-width:60px;
-height:60px;
-background:var(--nature-green);
-color:white;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:28px;
-text-decoration:none;
-box-shadow:0 15px 30px rgba(0,0,0,0.3);
-transition:0.3s;
-}
-
-.whatsapp-float:hover{
-background:var(--tech-blue);
-transform:scale(1.1);
-}
+/* =========================================================
+   FOOTER
+   ========================================================= */
 
 footer{
-background:var(--tech-blue);
-color:white;
-text-align:center;
-padding:40px;
+    background:#051511;
+
+    color:white;
+
+    padding:45px 6vw;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr 1fr;
+
+    gap:30px;
 }
 
-/* ================= RESPONSIVE ================= */
-@media(max-width:768px){
-.hero h1{
-font-size:26px;
+.footer-brand{
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-family:'Space Grotesk',sans-serif;
 }
-.hero p{
-font-size:18px;
+
+.footer-description{
+    color:#7e8c86;
+
+    font-size:11px;
+
+    max-width:280px;
 }
-.course-card{
-width:100%;
+
+.footer-links{
+    display:flex;
+
+    gap:22px;
+
+    justify-content:center;
+
+    font-size:11px;
 }
+
+.footer-links a{
+    color:#a1aca7;
+}
+
+.footer-bottom{
+    grid-column:1/-1;
+
+    padding-top:25px;
+
+    border-top:1px solid rgba(255,255,255,.09);
+
+    color:#64736d;
+
+    font-size:10px;
+}
+
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+
+.reveal{
+    opacity:0;
+
+    transform:translateY(20px);
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+}
+
+.reveal.visible{
+    opacity:1;
+
+    transform:translateY(0);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:950px){
+
+    .nav-links,
+    .nav-button{
+        display:none;
+    }
+
+    .menu-button{
+        display:block;
+    }
+
+    .navbar.mobile-open{
+        position:sticky;
+    }
+
+    .navbar.mobile-open .nav-links{
+        display:flex;
+
+        position:absolute;
+
+        top:78px;
+        left:0;
+        right:0;
+
+        padding:25px 6vw;
+
+        flex-direction:column;
+
+        background:var(--cream);
+
+        border-bottom:1px solid var(--line);
+    }
+
+    .hero{
+        grid-template-columns:1fr;
+
+        padding-top:65px;
+    }
+
+    .hero-visual{
+        height:470px;
+    }
+
+    .intro,
+    .manifesto{
+        grid-template-columns:1fr;
+
+        gap:25px;
+    }
+
+    .solutions{
+        grid-template-columns:1fr;
+    }
+
+    .solution-card{
+        min-height:370px;
+    }
+
+    .learning{
+        grid-template-columns:1fr;
+
+        gap:55px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    footer{
+        grid-template-columns:1fr;
+    }
+
+    .footer-links{
+        justify-content:flex-start;
+    }
+
+    .footer-bottom{
+        grid-column:1;
+    }
+}
+
+@media(max-width:600px){
+
+    .announcement{
+        font-size:9px;
+    }
+
+    .hero{
+        padding-left:5vw;
+        padding-right:5vw;
+    }
+
+    .section{
+        padding-left:5vw;
+        padding-right:5vw;
+    }
+
+    .solutions{
+        padding-left:5vw;
+        padding-right:5vw;
+    }
+
+    .learning{
+        padding-left:5vw;
+        padding-right:5vw;
+    }
+
+    .hero h1{
+        font-size:49px;
+    }
+
+    .hero-description{
+        font-size:15px;
+    }
+
+    .hero-stats{
+        gap:18px;
+    }
+
+    .hero-stat strong{
+        font-size:14px;
+    }
+
+    .hero-stat small{
+        font-size:8px;
+    }
+
+    .hero-visual{
+        height:400px;
+    }
+
+    .ai-panel{
+        width:94%;
+    }
+
+    .float-one{
+        right:-2px;
+        top:50px;
+    }
+
+    .float-two{
+        left:-2px;
+        bottom:65px;
+    }
+
+    .ring{
+        width:400px;
+        height:400px;
+    }
+
+    .stats{
+        padding:50px 5vw;
+    }
+
+    .stat{
+        padding-left:15px;
+    }
+
+    .cta{
+        padding-left:5vw;
+        padding-right:5vw;
+    }
+
+    footer{
+        padding-left:5vw;
+        padding-right:5vw;
+    }
+
 }
 
 </style>
 </head>
+
+
 <body>
 
-<header>
-<div class="logo">ROBOTPROF</div>
-<nav>
-<a href="#courses">Courses</a>
-<a href="#testimonials">Testimonials</a>
-<a href="#contact">Contact</a>
-</nav>
+<!-- ======================================================
+     ANNOUNCEMENT
+======================================================= -->
+
+<div class="announcement">
+    <span>THE FUTURE OF HEALTHCARE IS BEING BUILT NOW.</span>
+    RobotProf is helping doctors build with AI.
+</div>
+
+
+<!-- ======================================================
+     NAVIGATION
+======================================================= -->
+
+<header class="navbar" id="navbar">
+
+    <a href="#home" class="logo">
+
+        <span class="logo-mark">R</span>
+
+        <span class="logo-name">
+            Robot<span>Prof</span>
+        </span>
+
+    </a>
+
+
+    <nav class="nav-links">
+
+        <a href="#platform">Platform</a>
+
+        <a href="#solutions">Solutions</a>
+
+        <a href="#learning">Learn</a>
+
+        <a href="#about">About</a>
+
+    </nav>
+
+
+    <a href="#contact" class="nav-button">
+        Get started <span>↗</span>
+    </a>
+
+
+    <button class="menu-button" id="menuButton">
+        ☰
+    </button>
+
 </header>
 
+
+<main id="home">
+
+
+<!-- ======================================================
+     HERO
+======================================================= -->
+
 <section class="hero">
-<div>
-<h1>Build a Child the Future Can't Ignore</h1>
-<p>World-Class coding, robotics, AI & green tech training for kids (ages 6–17)</p>
-<div class="hero-buttons">
-<a href="https://forms.gle/EUYtrgBYZZCegcCWA" class="btn btn-primary">Parent Registration</a>
-<a href="https://forms.gle/EUYtrgBYZZCegcCWA" class="btn btn-green">School Partnership</a>
-</div>
-</div>
+
+    <div class="hero-content">
+
+        <div class="eyebrow">
+
+            <span class="eyebrow-dot"></span>
+
+            AI × HEALTHCARE
+
+        </div>
+
+
+        <h1>
+            Where <em>doctors</em> meet
+            artificial intelligence.
+        </h1>
+
+
+        <p class="hero-description">
+
+            RobotProf is a healthcare technology and education
+            company helping doctors and healthcare professionals
+            understand, use and build with AI.
+
+        </p>
+
+
+        <div class="hero-actions">
+
+            <a href="#platform" class="primary-button">
+                Explore RobotProf
+                <span>→</span>
+            </a>
+
+            <a href="#learning" class="secondary-button">
+                Start learning
+            </a>
+
+        </div>
+
+
+        <div class="hero-stats">
+
+            <div class="hero-stat">
+
+                <strong>400+</strong>
+
+                <small>
+                    learners reached
+                </small>
+
+            </div>
+
+
+            <div class="hero-stat">
+
+                <strong>28+</strong>
+
+                <small>
+                    cohorts delivered
+                </small>
+
+            </div>
+
+
+            <div class="hero-stat">
+
+                <strong>AI × Medicine</strong>
+
+                <small>
+                    our focus
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- HERO VISUAL -->
+
+    <div class="hero-visual">
+
+        <div class="visual-grid"></div>
+
+        <div class="glow"></div>
+
+        <div class="ring"></div>
+
+
+        <div class="float-label float-one">
+            AI + MEDICINE
+        </div>
+
+
+        <div class="float-label float-two">
+            <span>●</span>
+            BUILDING NOW
+        </div>
+
+
+        <div class="ai-panel">
+
+            <div class="panel-top">
+
+                <span class="panel-status">
+                    ● LIVE
+                </span>
+
+                <span>
+                    ROBOTPRO / CLINICAL AI
+                </span>
+
+                <span>
+                    •••
+                </span>
+
+            </div>
+
+
+            <div class="panel-line"></div>
+
+
+            <div class="ai-symbol">
+                ✦
+            </div>
+
+
+            <h3>
+                Clinical intelligence,
+                built by clinicians.
+            </h3>
+
+
+            <p>
+                Learn the technology. Test the idea.
+                Build the solution.
+            </p>
+
+
+            <div class="terminal">
+
+                <div>
+                    <span>01</span>
+                    clinical_problem
+                    <b>→</b>
+                    AI
+                </div>
+
+                <div>
+                    <span>02</span>
+                    patient_data
+                    <b>→</b>
+                    insight
+                </div>
+
+                <div>
+                    <span>03</span>
+                    research
+                    <b>→</b>
+                    impact
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
 
-<section class="about fade-in">
-<h1>WHAT WE DO</h1>
-  <br>
-<p>
-RobotProf equips kids (ages 6-17) with real-world technology skills in coding, robotics, artificial intelligence, and green innovation — preparing them to become global leaders, innovators, and problem-solvers in an evolving digital world.
-</p>
 
-<div class="stats">
-<div class="stat">
-<h3 class="counter" data-target="513">0</h3>
-<p>Students Trained</p>
+<!-- ======================================================
+     MARQUEE
+======================================================= -->
+
+<div class="marquee">
+
+    <div class="marquee-track">
+
+        CLINICAL AI
+        <i>✦</i>
+
+        MEDICAL EDUCATION
+        <i>✦</i>
+
+        HEALTHCARE INNOVATION
+        <i>✦</i>
+
+        RESEARCH
+        <i>✦</i>
+
+        AI FOR DOCTORS
+        <i>✦</i>
+
+        CLINICAL AI
+        <i>✦</i>
+
+        MEDICAL EDUCATION
+        <i>✦</i>
+
+        HEALTHCARE INNOVATION
+        <i>✦</i>
+
+        RESEARCH
+        <i>✦</i>
+
+        AI FOR DOCTORS
+        <i>✦</i>
+
+    </div>
+
 </div>
-<div class="stat">
-<h3 class="counter" data-target="120">0</h3>
-<p>Projects Built</p>
-</div>
-<div class="stat">
-<h3 class="counter" data-target="10">0</h3>
-<p>Schools Partnered</p>
-</div>
-</div>
+
+
+<!-- ======================================================
+     PLATFORM
+======================================================= -->
+
+<section class="section intro reveal" id="platform">
+
+    <div class="section-label">
+        01 / THE PLATFORM
+    </div>
+
+
+    <div>
+
+        <h2 class="section-heading">
+
+            Medicine is changing.
+            <br>
+
+            <span>
+                Doctors should be in the room.
+            </span>
+
+        </h2>
+
+
+        <p class="section-copy">
+
+            Artificial intelligence will change how healthcare
+            is delivered, researched and taught.
+
+            <br><br>
+
+            RobotProf exists to make sure healthcare professionals
+            are not simply users of that future.
+
+            They are part of the people building it.
+
+        </p>
+
+    </div>
+
 </section>
 
-<section id="courses">
-<h2>COURSES</h2>
 
-  <br>
-  
-<div class="courses-container">
+<!-- ======================================================
+     SOLUTIONS
+======================================================= -->
 
-<div class="course-card">
-<img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4" alt="Robots building">
-<div class="course-content">
-<h3>Introduction to Coding & Website Development</h3>
-<ul>
-<li>Virtual 6-Weekends Intensive Program</li>
-<li>HTML, CSS & Climate-themed Websites Creation</li>
-<li>Logical thinking & Problem Solving</li>
-<li>Build & Launch First Personal Website</li>
-</ul>
-<div class="price">₦50,000</div>
-<a href="https://forms.gle/EUYtrgBYZZCegcCWA" class="btn btn-green">REGISTER HIM/HER NOW</a>
-</div>
-</div>
+<section class="solutions" id="solutions">
 
-<div class="course-card">
-<img src="images (58).jpeg"    alt="robots building">
-<div class="course-content">
-<h3>Intro to Robotics & Artificial Intelligence</h3>
-<ul>
-<li>Virtual 8-Weekends Intensive Program</li>
-<li>Build Beginner Robotics Projects</li>
-<li>Introduction to Artificial Intelligence</li>
-<li>Green Technology & Climate Innovation Application</li>
-</ul>
-<div class="price">₦100,000</div>
-<a href="https://forms.gle/EUYtrgBYZZCegcCWA" class="btn btn-green">REGISTER HIM/HER NOW</a>
-</div>
-</div>
 
-<div class="course-card">
-<img src="images (59).jpeg" alt="">
-<div class="course-content">
-<h3>Introduction to Graphics Design & UI/UX</h3>
-<ul>
-<li>Virtual 5-Weekends Intensive Program</li>
-<li>Design Thinking Fundamentals</li>
-<li>Branding & Visual Communication</li>
-<li>Create Real UI Design Climate Projects </li>
-</ul>
-  <div class="price">₦50,000</div>
-<a href="https://forms.gle/EUYtrgBYZZCegcCWA" class="btn btn-green">REGISTER HIM/HER NOW</a>
-</div>
-</div>
+    <article class="solution-card solution-dark reveal">
 
-<div class="course-card">
-<img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" alt="">
-<div class="course-content">
-<h3>Advanced Coding & Web Development</h3>
-<ul>
-<li>Virtual 3-Months Intensive Program</li>
-<li>JavaScript & Interactive Web Apps</li>
-<li>Portfolio Development</li>
-<li>Real-World Project Experience</li>
-</ul>
-<div class="price">₦150,000</div>
-<a href="https://forms.gle/EUYtrgBYZZCegcCWA" class="btn btn-green">REGISTER HIM/HER NOW</a>
-</div>
-</div>
+        <div class="card-number">
+            01
+        </div>
 
-<div class="course-card">
-<img src="https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b" alt="">
-<div class="course-content">
-<h3>Advanced Robotics & Artificial Intelligence</h3>
-<ul>
-<li>Virtual 3-Months Intensive Program</li>
-<li>Build AI Models & Smart Systems</li>
-<li>Advanced Robotics Engineering</li>
-<li>Capstone Innovation Project</li>
-</ul>
-<div class="price">₦200,000</div>
-<a href="https://forms.gle/EUYtrgBYZZCegcCWA" class="btn btn-green">REGISTER HIM/HER NOW</a>
-</div>
-</div>
 
-</div>
+        <div class="card-icon">
+            ⌘
+        </div>
+
+
+        <h3>
+            AI for Doctors
+        </h3>
+
+
+        <p>
+
+            Practical AI education designed around
+            real clinical workflows, research and
+            the problems doctors actually face.
+
+        </p>
+
+
+        <a href="#contact" class="card-link">
+
+            Explore for clinicians
+            <span>↗</span>
+
+        </a>
+
+    </article>
+
+
+
+    <article class="solution-card solution-green reveal">
+
+        <div class="card-number">
+            02
+        </div>
+
+
+        <div class="card-icon">
+            ⌁
+        </div>
+
+
+        <h3>
+            Build with AI
+        </h3>
+
+
+        <p>
+
+            Go from a clinical problem to data,
+            models and working prototypes —
+            without needing to become a software
+            engineer first.
+
+        </p>
+
+
+        <a href="#contact" class="card-link">
+
+            Build with us
+            <span>↗</span>
+
+        </a>
+
+    </article>
+
+
+
+    <article class="solution-card solution-cream reveal">
+
+        <div class="card-number">
+            03
+        </div>
+
+
+        <div class="card-icon">
+            ◌
+        </div>
+
+
+        <h3>
+            Research & Innovation
+        </h3>
+
+
+        <p>
+
+            Turn healthcare questions into
+            data-driven research projects,
+            AI experiments and solutions with
+            real-world potential.
+
+        </p>
+
+
+        <a href="#contact" class="card-link">
+
+            Explore research
+            <span>↗</span>
+
+        </a>
+
+    </article>
+
+
 </section>
 
-  <hr>
-  
-<section id="testimonials">
-<h2>WHAT PARENTS & STUDENTS SAY</h2>
-  <br>
 
-<div class="testimonial-slider">
+<!-- ======================================================
+     LEARNING
+======================================================= -->
 
-<div class="slide active">
-<div class="testimonial">
-“RobotProf exceeded our expectations. Within weeks, my son built a functional website and showed remarkable discipline and accountability. The program is structured, professional, and truly future-focused.”
-<br><br>
-<strong>— Prof. Akeredolu, October 2025 Cohort Parent</strong>
-</div>
-</div>
+<section class="learning-section" id="learning">
 
-<div class="slide">
-<div class="testimonial">
-“I built a robot that can separate perishable waste from plastics helping proper waste disposal! I also learned how AI works. I want to become an engineer now.”
-<br><br>
-<strong>— Chidi, 9 Years Old Robotics Program Student</strong>
-</div>
-</div>
-</div>
+    <div class="learning">
+
+        <div class="reveal">
+
+            <div class="section-label">
+                02 / LEARNING
+            </div>
+
+
+            <h2 class="section-heading">
+
+                Don't just
+                <span>use</span> AI.
+
+                <br>
+
+                Understand it.
+
+            </h2>
+
+
+            <p class="section-copy">
+
+                Structured, practical learning for healthcare
+                professionals who want to stay ahead of the
+                curve — and build things that matter.
+
+            </p>
+
+
+            <a href="#contact" class="dark-button">
+
+                View learning programmes
+
+                <span>→</span>
+
+            </a>
+
+        </div>
+
+
+        <div class="learning-list">
+
+
+            <article class="learning-item reveal">
+
+                <span class="learning-number">
+                    01
+                </span>
+
+                <div>
+
+                    <h3>
+                        AI Foundations for Doctors
+                    </h3>
+
+                    <p>
+                        From prompting and automation
+                        to responsible clinical AI.
+                    </p>
+
+                </div>
+
+                <span class="learning-arrow">
+                    ↗
+                </span>
+
+            </article>
+
+
+            <article class="learning-item reveal">
+
+                <span class="learning-number">
+                    02
+                </span>
+
+                <div>
+
+                    <h3>
+                        Clinical Data & Machine Learning
+                    </h3>
+
+                    <p>
+                        Use healthcare datasets to answer
+                        meaningful clinical questions.
+                    </p>
+
+                </div>
+
+                <span class="learning-arrow">
+                    ↗
+                </span>
+
+            </article>
+
+
+            <article class="learning-item reveal">
+
+                <span class="learning-number">
+                    03
+                </span>
+
+                <div>
+
+                    <h3>
+                        Medical AI Research
+                    </h3>
+
+                    <p>
+                        Build, evaluate and communicate
+                        AI-powered research projects.
+                    </p>
+
+                </div>
+
+                <span class="learning-arrow">
+                    ↗
+                </span>
+
+            </article>
+
+
+            <article class="learning-item reveal">
+
+                <span class="learning-number">
+                    04
+                </span>
+
+                <div>
+
+                    <h3>
+                        AI Product Building
+                    </h3>
+
+                    <p>
+                        Turn a clinical problem into a
+                        prototype people can actually use.
+                    </p>
+
+                </div>
+
+                <span class="learning-arrow">
+                    ↗
+                </span>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
 </section>
-  <hr>
-<section class="solar">
-<h2>COMING SOON: SOLAR BAG KIT FOR KIDS</h2>
-  <br>
-<img src="file_000000005bb071f498c59b2a8f4736b9.png" alt="Solar Bag">
-<p>
-A solar-powered educational kit designed to provide access to robotics tools, coding devices, and climate innovation resources — empowering children to build sustainable solutions anywhere.
-</p>
-  <br>
-<a href="https://forms.gle/EUYtrgBYZZCegcCWA" class="btn btn-green">Join Waitlist</a>
+
+
+<!-- ======================================================
+     STATS
+======================================================= -->
+
+<section class="stats">
+
+    <div class="stat reveal">
+
+        <strong>
+            400+
+        </strong>
+
+        <span>
+            learners reached
+        </span>
+
+    </div>
+
+
+    <div class="stat reveal">
+
+        <strong>
+            28+
+        </strong>
+
+        <span>
+            cohorts delivered
+        </span>
+
+    </div>
+
+
+    <div class="stat reveal">
+
+        <strong>
+            92%
+        </strong>
+
+        <span>
+            completion rate
+        </span>
+
+    </div>
+
+
+    <div class="stat reveal">
+
+        <strong>
+            ∞
+        </strong>
+
+        <span>
+            problems worth solving
+        </span>
+
+    </div>
+
 </section>
 
-  <hr>
-<br>
-  
- 
-<section class="contact" id="contact">
-<h2>CONTACT US</h2>
-<h3>CALL/WHATSAPP: +2348087371415, +2349120432208</h3>
-<h3>EMAIL: info@robotprof.org</h3>
-<h3>HEADQUARTERS: Lagos, Nigeria</h3>
+
+<!-- ======================================================
+     ABOUT / MANIFESTO
+======================================================= -->
+
+<section class="section manifesto reveal" id="about">
+
+    <div class="section-label">
+        03 / OUR BELIEF
+    </div>
+
+
+    <div>
+
+        <p class="manifesto-text">
+
+            The next generation of healthcare innovation
+            will be built by people who understand
+
+            <span>
+                both sides.
+            </span>
+
+        </p>
+
+
+        <p class="manifesto-subtext">
+
+            The clinical reality.
+
+            <br>
+
+            The technology underneath it.
+
+            <br><br>
+
+            RobotProf sits at that intersection.
+
+        </p>
+
+
+        <a href="#contact" class="dark-button">
+
+            Meet RobotProf
+
+            <span>↗</span>
+
+        </a>
+
+    </div>
+
 </section>
 
-<br>
-  
+
+<!-- ======================================================
+     CTA
+======================================================= -->
+
+<section class="cta" id="contact">
+
+    <div class="cta-glow"></div>
+
+
+    <div class="cta-content">
+
+        <div class="section-label">
+            04 / LET'S BUILD
+        </div>
+
+
+        <h2>
+
+            Have a healthcare
+            problem worth
+
+            <span>
+                solving?
+            </span>
+
+        </h2>
+
+
+        <p>
+            Let's turn the idea into something real.
+        </p>
+
+
+        <a
+            href="mailto:hello@robotprof.name.ng"
+            class="light-button"
+        >
+
+            Talk to RobotProf
+
+            <span>→</span>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- ======================================================
+     FOOTER
+======================================================= -->
+
 <footer>
-© 2026 RobotProf | All Rights Reserved
+
+
+    <div>
+
+        <div class="footer-brand">
+
+            <span class="logo-mark">
+                R
+            </span>
+
+            <strong>
+                RobotProf
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div>
+
+        <p class="footer-description">
+
+            AI education and innovation
+            for healthcare professionals.
+
+        </p>
+
+    </div>
+
+
+    <nav class="footer-links">
+
+        <a href="#platform">
+            Platform
+        </a>
+
+        <a href="#solutions">
+            Solutions
+        </a>
+
+        <a href="#learning">
+            Learn
+        </a>
+
+        <a href="#about">
+            About
+        </a>
+
+        <a href="mailto:hello@robotprof.name.ng">
+            Contact
+        </a>
+
+    </nav>
+
+
+    <div class="footer-bottom">
+
+        © <span id="year"></span>
+        RobotProf.
+        AI × Healthcare.
+
+    </div>
+
+
 </footer>
 
-<a href="https://wa.me/2348087371415" target="_blank" class="whatsapp-float">💬</a>
+
+<!-- ======================================================
+     JAVASCRIPT
+======================================================= -->
 
 <script>
-/* Fade In */
-const faders=document.querySelectorAll('.fade-in');
-window.addEventListener('scroll',()=>{
-faders.forEach(fade=>{
-if(fade.getBoundingClientRect().top<window.innerHeight-100){
-fade.classList.add('show');
-}
-});
+
+/* ==============================
+   MOBILE NAVIGATION
+============================== */
+
+const navbar =
+    document.getElementById("navbar");
+
+const menuButton =
+    document.getElementById("menuButton");
+
+
+menuButton.addEventListener("click", () => {
+
+    navbar.classList.toggle("mobile-open");
+
 });
 
-/* Animated Stats */
-const counters=document.querySelectorAll('.counter');
-counters.forEach(counter=>{
-const update=()=>{
-const target=+counter.getAttribute('data-target');
-const count=+counter.innerText;
-const inc=target/200;
-if(count<target){
-counter.innerText=Math.ceil(count+inc);
-setTimeout(update,10);
-}else{
-counter.innerText=target;
-}
-};
-update();
+
+document
+    .querySelectorAll(".nav-links a")
+    .forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            navbar.classList.remove("mobile-open");
+
+        });
+
+    });
+
+
+/* ==============================
+   CURRENT YEAR
+============================== */
+
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+
+/* ==============================
+   SCROLL REVEAL
+============================== */
+
+const revealElements =
+    document.querySelectorAll(".reveal");
+
+
+const observer =
+    new IntersectionObserver(
+
+        (entries) => {
+
+            entries.forEach(entry => {
+
+                if(entry.isIntersecting){
+
+                    entry.target.classList.add("visible");
+
+                    observer.unobserve(
+                        entry.target
+                    );
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold:.12
+        }
+
+    );
+
+
+revealElements.forEach(element => {
+
+    observer.observe(element);
+
 });
 
-/* Testimonial Slider */
-let slideIndex=0;
-const slides=document.querySelectorAll(".slide");
-function showSlides(){
-slides.forEach(slide=>slide.classList.remove("active"));
-slideIndex++;
-if(slideIndex>slides.length){slideIndex=1;}
-slides[slideIndex-1].classList.add("active");
-setTimeout(showSlides,5000);
-}
-showSlides();
+
+/* ==============================
+   NAVBAR SHADOW
+============================== */
+
+window.addEventListener("scroll", () => {
+
+    if(window.scrollY > 20){
+
+        navbar.style.boxShadow =
+            "0 8px 30px rgba(7,27,23,.06)";
+
+    }else{
+
+        navbar.style.boxShadow =
+            "none";
+
+    }
+
+});
+
 </script>
 
 </body>
 </html>
+```
+
 
