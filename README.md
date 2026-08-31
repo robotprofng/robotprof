@@ -1,2 +1,2 @@
 # robotprof
-Climate-Tech education for African Kids
+AI EDUCATION FOR HEALTHCARE PROFESSIONALS
